@@ -1,0 +1,43 @@
+.header-img {
+	max-width: 60%;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+
+}
+
+.work-img {
+	max-width: 30%;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/*
+nav {
+	width: 300px;
+	height: 100%;
+	position: absolute;
+	transform: translate(-300px, 0);
+	transition: transform 0.3s ease;
+}
+
+nav.open {
+	transform: translate(0, 0);
+}
+*/
+@media screen and (min-width: 600px) {
+	nav {
+		position: relative;
+		transform: translate(0, 0);
+	}
+	body {
+		display: flex;
+		flex-flow: row rowrap;
+	}
+	main {
+		width: auto;
+		flex-grow: 1;
+	}
+}

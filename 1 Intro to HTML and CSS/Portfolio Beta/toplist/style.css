@@ -1,0 +1,28 @@
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	
+}
+
+.title {
+	background-color: #33BEBE;
+	color: #FFFFFF;
+	font-family: 
+}
+
+.description {
+	max-width: 60%;
+	margin-left: 20px;
+	
+}
+
+.screenshot {
+	
+}
+
+.app {
+	display: -webkit-flex;
+    display: flex;
+}
