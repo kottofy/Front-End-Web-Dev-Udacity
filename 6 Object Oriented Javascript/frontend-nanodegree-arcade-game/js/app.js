@@ -8,10 +8,33 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     // TODO: Set the Enemy initial location
-    //this.render(this.sprite, 0, 0);
+    var randNum = Math.floor((Math.random() * 3) + 1);
+    //console.log(randNum);
+    switch (randNum)
+    {
+        case 1: //top row
+        {
+            this.x = -100;
+            this.y = 60;
+            break;
+        }
+        case 2:
+        {
+            this.x = -100;
+            this.y = 60+82;
+            break;
+        }
+        case 3:
+        {
+            this.x = -100;
+            this.y = 60+82+82;
+            break;
+        }
+    }
+   
 
     // TODO: Set the Enemy speed
-
+    this.speed = Math.floor((Math.random() * 200) + 100);
 }
 
 // Update the enemy's position, required method for game
@@ -20,11 +43,30 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
+   // console.log("enemy dt: " + dt);
     // TODO: Update the Enemy location
-    this.x = 100*dt;
-    this.y = 10*dt;
+    this.x +=this.speed*dt;
+    var anotherRanNum = Math.floor((Math.random() * 700) + 100);
+    //console.log(anotherRanNum);
+    if (this.x > anotherRanNum)
+        {
+            //console.log("index: " + index);
+            //console.log("allEmenies 1: " + allEnemies);
+            if (allEnemies.length < maxEnemies)
+                allEnemies.push(new Enemy());
+            //console.log("allEmenies after: " + allEnemies);
+        }
+        if (this.x > 700)
+        {
+            var index = allEnemies.indexOf(this);
+            //console.log("index: " + index);
+            //console.log("allEmenies 2: " + allEnemies);
+            allEnemies[index] = new Enemy();
+        }
     // TODO: Handle collision with the Player
+
+    if ((this.x < player.x+xRange && this.x > player.x-xRange) && (this.y < player.y+yRange && this.y > player.y-yRange))
+        player.reset();
 }
 
 // Draw the enemy on the screen, required method for game
@@ -38,17 +80,17 @@ Enemy.prototype.render = function() {
 var Player = function() {
 
     // Load the image by setting this.sprite to the 
-    // appropriate image in the image folder (use 
-    // the code from the Enemy function as an example on how to do that)
+    // appropriate image in the image folder
     this.sprite = 'images/char-boy.png';
-    this.x = 10;
-    this.y = 20;
-
+    
     // Set the Player initial location
-    var posx = 0;
-    var posy = 0;
+    this.reset();
 }
 
+Player.prototype.reset = function() {
+    this.x = 200;
+    this.y = 320+82;
+}
 
 // The update method for the Player (can be similar to the one for the Enemy)
 Player.prototype.update = function(dt) {
@@ -79,32 +121,45 @@ Player.prototype.handleInput = function(key) {
     {
         case 'left': 
         {
-            posx=posx-10;
+            if (this.x!=0)
+                this.x-=100;
             break;
         }
             case 'up': 
         {
-            posy=posy+10;
+            this.y-=82;
             break;
         }
         case 'right': 
         {
-            posx=posx+10;
+            if ( this.x !=400)
+                this.x+=100;
             break;
         }
         case 'down': 
         {
-            posy=posy-10;
+            if (this.y !=402)
+            this.y+=82;
             break;
         } 
     }
+    //console.log("x: " + this.x + ", y: " + this.y);
+    if (this.y<74)
+        {
+            this.reset();
+        }
+
 }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [new Enemy(),new Enemy(),new Enemy()];
+var maxEnemies = 2;
+   var xRange = 70;
+    var yRange = 15;
+var allEnemies = [new Enemy()];
+
 var player = new Player();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
