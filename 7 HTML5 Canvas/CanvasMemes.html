@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+
+<body>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/f/ff/SuccessKid.jpg" alt="success kid">
+	<canvas id="c" width="500" height="500"></canvas>
+
+	<script>
+	var c = document.querySelector("#c");
+	
+	var ctx = c.getContext("2d");
+
+// 	NOTE: THIS IMAGE WILL ONLY RUN IF HOSTED ON SERVER
+	var image = new Image();
+	
+	image.onLoad = function() {
+		console.log("Loaded Image");
+		ctx.drawImage(image, 0, 0, c.width, c.height);
+		var savedImage = c.toDataURL();
+		window.open(savedImage);
+	}
+	image.src = "Success_Kid.jpg";
+
+		ctx.font = "36pt Impact";
+		ctx.textAlign = "center";
+		
+		ctx.fillStyle = 'white';
+		ctx.fillText("CANVAS MEMES!", c.width/2, 40)
+
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = 'black';
+		ctx.strokeText("CANVAS MEMES!", c.width/2, 40);
+
+	</script>
+</body>
+</html>

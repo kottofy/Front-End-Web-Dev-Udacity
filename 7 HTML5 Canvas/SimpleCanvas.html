@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+</head>
+
+<body>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/f/ff/SuccessKid.jpg" alt="success kid">
+	<canvas id="c" width="500" height="500"></canvas>
+
+	<script>
+	var c = document.querySelector("#c");
+	
+	var ctx = c.getContext("2d");
+
+	var image = new Image();
+
+	image.onLoad = function() {
+		console.log("Loaded Image");
+		ctx.drawImage(image, 0, 0, c.width, c.height);
+		var savedImage = c.toDataURL();
+		window.open(savedImage);
+	}
+
+	image.src = "Success_Kid.jpg";
+	
+	</script>
+</body>
+</html>

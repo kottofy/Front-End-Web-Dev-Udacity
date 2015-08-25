@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Image Data!</title>
+</head>
+
+<body>
+
+	<canvas id="c" width="500" height="500"></canvas>
+
+	<script>
+		var c = document.querySelector("#c");
+		var ctx = c.getContext("2d");
+
+		//ctx.strokeRect(50, 50, 150, 150);
+
+		ctx.beginPath();
+		ctx.moveTo(50,50);
+		ctx.lineTo(150,50);
+		ctx.lineTo(150,150);
+		ctx.lineTo(50,150);
+		ctx.lineTo(50,50);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.moveTo(75,75);
+		ctx.lineTo(125,75);
+		ctx.lineTo(125,125);
+		ctx.lineTo(75,75);
+		ctx.fill();
+
+</script>
+</body>
+</html>
